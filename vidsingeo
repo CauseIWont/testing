@@ -21,7 +21,7 @@ document.addEventListener("keydown", function(e) {
 			}
 			setTimeout(() => {
 			newPanel.innerHTML = newPanel.innerHTML + '<iframe width="1093" height="624" src=<iframe width="1280" height="1192" src="https://www.youtube.com/embed/OFRn1Xibhlg?list=RDMMSm0rldbWKOI" title="2econd 2ight 2eer (that was fun, goodbye.)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>';
-			document.getElementById("chatIframe").src = "" + freq
+			document.getElementById("chatIframe").src = "<iframe width="1280" height="1192" src="https://www.youtube.com/embed/" + freq
 			},100)
 		}
 	}
