@@ -14,15 +14,48 @@ document.addEventListener("keydown", function(e) {
 	if (e.keyCode == 76) {
 		if (shift) {
 			shift = false;
-			var freq = prompt("Enter embed URL (right click the video > copy as embed) and paste it in! Type something random to get rid of it!:");
-			newPanel.innerHTML = panelHTML
-			if (freq.length < 5) {
-				return;
+		
+<html>
+<head>
+	<title>HTML YouTube Video Player</title>
+</head>
+<body>
+
+	<input type="text" id="videoLink" placeholder="Enter YouTube video, playlist, or mix link">
+	<button onclick="playVideo()">Play Video</button>
+	<br><br>
+	<iframe id="videoPlayer" width="960" height="540" src="" frameborder="0" allowfullscreen></iframe>
+
+	<script>
+		function playVideo() {
+			var videoLink = document.getElementById("videoLink").value;
+			var videoId = "";
+			var playlistId = "";
+			var mixId = "";
+			if(videoLink.includes("youtube.com/watch?v=")) {
+				videoId = videoLink.split("=")[1];
+				var videoUrl = "https://www.youtube.com/embed/" + videoId;
+				document.getElementById("videoPlayer").src = videoUrl;
 			}
-			setTimeout(() => {
-			newPanel.innerHTML = newPanel.innerHTML + '<iframe width="1093" height="624" src=<iframe width="1280" height="1192" src="https://www.youtube.com/embed/OFRn1Xibhlg" title="2econd 2ight 2eer (that was fun, goodbye.)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>';
-			document.getElementById("chatIframe").src = "<iframe width="1280" height="1192" src="https://www.youtube.com/embed/" + freq
-			},100)
+			else if(videoLink.includes("youtube.com/playlist?list=")) {
+				playlistId = videoLink.split("=")[1];
+				var playlistUrl = "https://www.youtube.com/embed/videoseries?list=" + playlistId;
+				document.getElementById("videoPlayer").src = playlistUrl;
+			}
+			else if(videoLink.includes("youtube.com/watch?list=")) {
+				mixId = videoLink.split("=")[2];
+				var mixUrl = "https://www.youtube.com/embed/videoseries?list=" + mixId;
+				document.getElementById("videoPlayer").src = mixUrl;
+			}
+			else {
+				alert("Invalid YouTube link. Please enter a valid video, playlist, or mix link.");
+			}
+		}
+	</script>
+
+</body>
+</html>
+
 		}
 	}
 	if (e.keyCode == 16 || e.keyCode == 13) {
